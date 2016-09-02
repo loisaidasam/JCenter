@@ -41,9 +41,14 @@ bintray {
 
     configurations = ['archives']
     
-    dryRun = properties.getProperty("bintray.dryRun", false) //[Default: false] Whether to run this as dry-run, without deploying
-    publish = properties.getProperty("bintray.publish", true) //[Default: false] Whether version should be auto published after an upload
-    override = properties.getProperty("bintray.override", false) //[Default: false] Whether to override version artifacts already published
+    //[Default: false] Whether to run this as dry-run, without deploying
+    dryRun = Boolean.parseBoolean(properties.getProperty("bintray.dryRun", "false"))
+    
+    //[Default: false] Whether version should be auto published after an upload
+    publish = Boolean.parseBoolean(properties.getProperty("bintray.publish", "true"))
+    
+    //[Default: false] Whether to override version artifacts already published
+    override = Boolean.parseBoolean(properties.getProperty("bintray.override", "false"))
     
     //Package configuration. The plugin will use the repo and name properties to check if the package already exists. In that case, there's no need to configure the other package properties (like userOrg, desc, etc).
     pkg {
